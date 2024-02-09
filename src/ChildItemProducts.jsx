@@ -2,38 +2,39 @@ import { memo } from "react";
 import "./Childproducts.styles.css";
 
 const ChildProducts = ({
-  products,
+  id,
+  title,
+  image,
+  price,
   backgroundcolor,
   changeBackgroundcolor,
-  productId,
+  selectedProductId,
+  cardColor
 }) => {
   console.log("BackGround rendering");
   return (
     <>
       <div className="product-container">
-        {products &&
-          products.map((product) => (
-            <div
-              key={product.id}
-              className="product-card"
-              //   style={{ backgroundColor: backgroundcolor }}
-              style={{
-                backgroundColor:
-                  product.id === productId ? backgroundcolor : "white",
-              }}
-            >
-              <img src={product.image} alt={product.title} />
-              <div className="product-details">
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-                {/* <p>{product.description}</p> */}
-                <button onClick={() => changeBackgroundcolor(product.id)}>
-                  {/* <button onClick={()=>changeBackgroundcolor}> */}
-                  changeBackgroundcolor
-                </button>
-              </div>
+        {
+          <div
+            key={id}
+            className="product-card"
+
+            style={{ backgroundColor: cardColor }}
+         
+          >
+            <img src={image} alt={title} />
+            <div className="product-details">
+              <h3>{title}</h3>
+              <p>${price}</p>
+
+              <button onClick={() => changeBackgroundcolor(id)}>
+                {/* <button onClick={()=>changeBackgroundcolor}> */}
+                changeBackgroundcolor
+              </button>
             </div>
-          ))}
+          </div>
+        }
       </div>
     </>
   );
